@@ -1,4 +1,5 @@
 #summary A list of all the user stories for each iteration of the project and long-term goals.
+#labels Phase-Requirements
 
 = Iteration 1 =
 
