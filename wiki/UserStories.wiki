@@ -3,7 +3,7 @@
 = Iteration 1 =
 
  * The user can visit the web page and see a graphical application.
- * The same web page works for every platform available.
+ * The same web page works for every platform available (PC, Mac, iPad, iPod, iPhone, Android phone, etc.; as many platforms as can be found).
  * The user can see a menu layout including Start Game, High Score, Settings, and Rules buttons.
 
 = Long-Term Goals =
