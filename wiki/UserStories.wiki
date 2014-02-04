@@ -1,0 +1,11 @@
+#summary A list of all the user stories for each iteration of the project and long-term goals.
+
+= Iteration 1 =
+
+ * The user can visit the web page and see a graphical application.
+ * The same web page works for every platform available.
+ * The user can see a menu layout including Start Game, High Score, Settings, and Rules buttons.
+
+= Long-Term Goals =
+
+ * Two users can play against each other on separate devices.
