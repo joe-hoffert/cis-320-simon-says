@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Simon Says</title>
+
+<style>
+html, body {
+  width:            100%;
+  height:           100%;
+  margin:           0px;
+  overflow:         hidden;
+  text-align:       center;
+  background-color: #000000;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="theCanvas" width="640" height="480" />
+
+<script>
+
+const aspectRatio = 4/3;
+
+// Find the canvas and graphics context.
+const canvas = document.getElementById("theCanvas");
+const gfx = canvas.getContext("2d");
+
+// Scale it to the window.
+if (window.innerWidth >= window.innerHeight * aspectRatio) {
+    canvas.width  = window.innerHeight * aspectRatio;
+    canvas.height = window.innerHeight;
+} else {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerWidth / aspectRatio;
+}
+
+gfx.fillStyle = "white";
+gfx.fillRect(0, 0, canvas.width, canvas.height);
+
+gfx.beginPath();
+gfx.rect(0, 0, canvas.width, canvas.height);
+gfx.strokeStyle = "red";
+gfx.stroke();
+
+</script>
+
+</body>
+</html>
