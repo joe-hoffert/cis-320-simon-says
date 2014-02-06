@@ -4,7 +4,7 @@
 = Iteration 1 =
 
  * The user can visit the web page and see a graphical application (http://levi.cis.indwes.edu/~bemrick/CIS%20320%20Project/simon.html).
- * The same web page works for every platform and browser available (PC, Mac, iPad, iPod, iPhone, Android phone, etc.; IE, Firefox, Chrome, Safari, Opera, etc.).
+ * The same web page works for Internet Explorer 10 and 11 and the latest versions of Firefox, Chrome, Safari, and Opera. It also works for a PC, Mac, iPad, iPod, iPhone, and Android phone.
  * The user can see a menu layout including Start Game, High Score, Settings, and Rules buttons.
 
 = Long-Term Goals =
