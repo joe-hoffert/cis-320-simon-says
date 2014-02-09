@@ -18,15 +18,19 @@
  
  <body>
   
-  <canvas id="theCanvas" width="640" height="480" />
+  <script type="text/javascript" src="thirdparty/canvg-1.3/rgbcolor.js"></script>
+  <script type="text/javascript" src="thirdparty/canvg-1.3/StackBlur.js"></script>
+  <script type="text/javascript" src="thirdparty/canvg-1.3/canvg.js"></script>
   
-  <script>
+  <canvas id="canvas" width="640" height="480"></canvas>
+  
+  <script type="text/javascript">
     var aspectRatio = 4/3;
     
     // Find the canvas and graphics context.
-    var canvas = document.getElementById("theCanvas");
+    var canvas = document.getElementById("canvas");
     var gfx = canvas.getContext("2d");
-
+    
     // Scale it to the window.
     if (window.innerWidth >= window.innerHeight * aspectRatio) {
         canvas.width  = window.innerHeight * aspectRatio;
@@ -35,14 +39,21 @@
         canvas.width  = window.innerWidth;
         canvas.height = window.innerWidth / aspectRatio;
     }
-
+    
+    // Make the canvas white with a 1-pixel red border to make sure it is exactly the right size in each environment.
     gfx.fillStyle = "white";
     gfx.fillRect(0, 0, canvas.width, canvas.height);
-
+    
     gfx.beginPath();
     gfx.rect(0, 0, canvas.width, canvas.height);
+    
     gfx.strokeStyle = "red";
     gfx.stroke();
+    
+    // Draw the menu buttons.
+    button_width  = canvas.width / 3;
+    button_height = 61 * button_width / 281; // TODO: Do not hard-code 61 (the original width) and 281 (the original height).
+    gfx.drawSvg("images/start_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_width) / 2, button_width, button_height);
   </script>
   
  </body>
