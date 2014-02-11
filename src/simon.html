@@ -53,7 +53,14 @@
     // Draw the menu buttons.
     button_width  = canvas.width / 3;
     button_height = 61 * button_width / 281; // TODO: Do not hard-code 61 (the original width) and 281 (the original height).
-    gfx.drawSvg("images/start_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_width) / 2, button_width, button_height);
+    gfx.drawSvg("images/start_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_height) / 4,
+     button_width, button_height);
+    
+    gfx.drawSvg("images/settings_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_height) / 2,
+     button_width, button_height);
+    
+    gfx.drawSvg("images/rules_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_height) * 3 / 4,
+     button_width, button_height);
   </script>
   
  </body>
