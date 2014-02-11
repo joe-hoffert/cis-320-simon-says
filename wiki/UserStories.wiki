@@ -1,12 +1,24 @@
 #summary A list of all the user stories for each iteration of the project and long-term goals.
 #labels Phase-Requirements
 
+= Iteration 2 =
+
+ # The buttons have a smooth, 3D appearance.
+ # The user can move the mouse over any button in the program and see its image change slightly to indicate the mouse-over event.
+ # The user can click on any button and have the button react visually as if it were being pushed.
+ # The user can click the Start button to be taken to a screen consisting of four colored buttons and a "Back" button.
+ # The user can click the Settings button to be taken to a screen with a "Back" button and space for settings controls.
+ # The user can click the Rules button to be taken to a screen with an explanation of the basic game rules.
+ # Each "Back" button should return the user to the main menu.
+ # The canvas resizes itself dynamically whenever the window is resized.
+ # The same code works in the same way on every platform and browser listed in U1:2.
+
 = Iteration 1 =
 
- * The user can visit the web page and see a graphical application (http://levi.cis.indwes.edu/~bemrick/CIS%20320%20Project/simon.html).
- * The same web page works for Internet Explorer 10 and 11 and the latest versions of Firefox, Chrome, Safari, and Opera. It also works for a PC, Mac, iPad, iPod, iPhone, and Android phone.
- * The user can see a menu layout including Start Game, High Score, Settings, and Rules buttons.
+ # The user can visit the web page and see a graphical application (http://levi.cis.indwes.edu/~bemrick/CIS%20320%20Project/simon.html).
+ # The same web page works for Internet Explorer 10 and 11 and the latest versions of Firefox, Chrome, Safari, and Opera. It also works for a PC, Mac, iPad, iPod, iPhone, and Android phone.
+ # The user can see a menu layout including Start Game, High Score, Settings, and Rules buttons.
 
 = Long-Term Goals =
 
- * Two users can play against each other on separate devices.
+ # Two users can play against each other on separate devices.
