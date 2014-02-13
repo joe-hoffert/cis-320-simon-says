@@ -1,10 +1,27 @@
 <!DOCTYPE HTML>
+
+<!--
+Copyright 2014 Chris Devers
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
 <html>
  <head>
   <meta charset="UTF-8">
   <title>Simon Says</title>
   
-  <style>
+  <style type="text/css">
   html, body {
     width:            100%;
     height:           100%;
@@ -25,42 +42,46 @@
   <canvas id="canvas" width="640" height="480"></canvas>
   
   <script type="text/javascript">
-    var aspectRatio = 4/3;
-    
-    // Find the canvas and graphics context.
-    var canvas = document.getElementById("canvas");
-    var gfx = canvas.getContext("2d");
-    
-    // Scale it to the window.
-    if (window.innerWidth >= window.innerHeight * aspectRatio) {
-        canvas.width  = window.innerHeight * aspectRatio;
-        canvas.height = window.innerHeight;
-    } else {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerWidth / aspectRatio;
-    }
-    
-    // Make the canvas white with a 1-pixel red border to make sure it is exactly the right size in each environment.
-    gfx.fillStyle = "white";
-    gfx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    gfx.beginPath();
-    gfx.rect(0, 0, canvas.width, canvas.height);
-    
-    gfx.strokeStyle = "red";
-    gfx.stroke();
-    
-    // Draw the menu buttons.
-    button_width  = canvas.width / 3;
-    button_height = 61 * button_width / 281; // TODO: Do not hard-code 61 (the original width) and 281 (the original height).
-    gfx.drawSvg("images/start_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_height) / 4,
-     button_width, button_height);
-    
-    gfx.drawSvg("images/settings_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_height) / 2,
-     button_width, button_height);
-    
-    gfx.drawSvg("images/rules_button.svg", (canvas.width - button_width) / 2, (canvas.height - button_height) * 3 / 4,
-     button_width, button_height);
+var aspectRatio = 4 / 3;
+
+// Find the canvas and graphics context.
+var canvas = document.getElementById("canvas");
+var gfx = canvas.getContext("2d");
+
+// Scale it to the window.
+if (window.innerWidth >= window.innerHeight * aspectRatio) {
+    canvas.width  = window.innerHeight * aspectRatio;
+    canvas.height = window.innerHeight;
+} else {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerWidth / aspectRatio;
+}
+
+// Make the canvas white with a 1-pixel red border to make sure it is exactly the right size in each environment.
+gfx.fillStyle = "white";
+gfx.fillRect(0, 0, canvas.width, canvas.height);
+
+gfx.beginPath();
+gfx.rect(0, 0, canvas.width, canvas.height);
+
+gfx.strokeStyle = "red";
+gfx.stroke();
+
+// Draw the menu buttons.
+// TODO: Get the unscaled dimensions from each SVG file.
+var unscaled_button_width  = 281;
+var unscaled_button_height = 61;
+
+var button_width  = canvas.width / 3;
+var button_height = unscaled_button_height * button_width / unscaled_button_width;
+
+var button_x     = (canvas.width - button_width) / 2;
+var top_button_y = (canvas.height - button_height) / 5;
+
+gfx.drawSvg("images/start_button.svg", button_x, top_button_y, button_width, button_height);
+gfx.drawSvg("images/highscore_button.svg", button_x, top_button_y * 2, button_width, button_height);
+gfx.drawSvg("images/settings_button.svg", button_x, top_button_y * 3, button_width, button_height);
+gfx.drawSvg("images/rules_button.svg", button_x, top_button_y * 4, button_width, button_height);
   </script>
   
  </body>
