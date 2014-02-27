@@ -8,11 +8,11 @@
  # The user can press any button on the screen and have the button react visually as if it were being pushed into the screen. (Jeremy)
  # The user can press the Start Game button to be taken to a screen (referred to hereafter as the "game screen") consisting of four differently colored buttons and a "Back" button. (Stephen)
  # The user can press the Settings button to be taken to a screen with a "Back" button and space for settings controls. (Stephen)
- # The user can press the Rules button to be taken to a screen with an explanation of the basic game rules and a "Back" button.
- # Each "Back" button should return the user to the main menu.
+ # The user can press the Rules button to be taken to a screen with an explanation of the basic game rules and a "Back" button. (Ben)
+ # Each "Back" button should return the user to the main menu. (Jeremy)
  # The canvas resizes itself dynamically whenever the window is resized. (Ben)
- # The same code works in the same way on every platform and browser listed in U1:2.
- # While the game screen is shown, the four buttons light up one at a time in a random sequence.
+ # The same code works in the same way on every platform and browser listed in U1:2. (Jeremy, Stephen, Ben)
+ # While the game screen is shown, the four buttons light up one at a time in a random sequence. (Jeremy)
 
 = Iteration 1 =
 
