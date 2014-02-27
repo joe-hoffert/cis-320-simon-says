@@ -1,8 +1,11 @@
-# Keep track of your time spent under your section here.
+Keep track of your time spent under your section here.
 
-= Jeremy Davis =
+== Jeremy Davis ==
 
-= Ben Emrick =
 
-= Stephen Burgos =
 
+== Ben Emrick ==
+
+2/27/2014 : 12:35-1:25 
+
+== Stephen Burgos ==
