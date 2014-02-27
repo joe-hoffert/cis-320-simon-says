@@ -6,11 +6,11 @@
  # The buttons have a smooth, 3D appearance. (Jeremy)
  # The user can hover the mouse over any button in the program and see its image change slightly to indicate the mouse-over event. (Jeremy)
  # The user can press any button on the screen and have the button react visually as if it were being pushed into the screen. (Jeremy)
- # The user can click the Start Game button to be taken to a screen (referred to hereafter as the "game screen") consisting of four differently colored buttons and a "Back" button.
- # The user can click the Settings button to be taken to a screen with a "Back" button and space for settings controls.
- # The user can click the Rules button to be taken to a screen with an explanation of the basic game rules and a "Back" button.
+ # The user can press the Start Game button to be taken to a screen (referred to hereafter as the "game screen") consisting of four differently colored buttons and a "Back" button.
+ # The user can press the Settings button to be taken to a screen with a "Back" button and space for settings controls.
+ # The user can press the Rules button to be taken to a screen with an explanation of the basic game rules and a "Back" button.
  # Each "Back" button should return the user to the main menu.
- # The canvas resizes itself dynamically whenever the window is resized.
+ # The canvas resizes itself dynamically whenever the window is resized. (Ben)
  # The same code works in the same way on every platform and browser listed in U1:2.
  # While the game screen is shown, the four buttons light up one at a time in a random sequence.
 
@@ -23,3 +23,4 @@
 = Long-Term Goals =
 
  # Two users can play against each other on separate devices.
+ # Rule sets can be altered between games.
