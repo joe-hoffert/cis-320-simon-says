@@ -1,4 +1,4 @@
-Keep track of your time spent under your section here.
+#Keep track of your time spent under your section here.
 
 == Jeremy Davis ==
 
