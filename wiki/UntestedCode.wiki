@@ -1,4 +1,4 @@
-I'm not sure this code works because I couldn't run it locally on my computer.  The event listeners need the correct ids for the "start game" and "settings" buttons.  Really, I'm just hoping this is close to correct because I'm not sure how I can test it.  This is based on the simon.html file from last week with my code added in.  
+I'm not sure this code works because I couldn't run it locally on my computer.  The event listeners need the correct ids for the "start game" and "settings" buttons.  Really, I'm just hoping this is close to correct because I'm not sure how I can test it.  This is based on the simon.html file from last week with my code added in.  I have also uploaded the game buttons to an images folder in my directory on levi.
 
 <script type="text/javascript">
 // Function called when start game is pushed
