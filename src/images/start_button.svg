@@ -88,10 +88,11 @@
     </rdf:RDF>
   </metadata>
   <g
-     onclick=""
-     onmouseover=""
-     onmouseout=""
-     onmousedown=""
+     onclick="top.startGame()"
+     onmouseover="top.mouseOver(evt)"
+     onmouseout="top.mouseOut(evt)"
+     onmousedown="top.mouseDown(evt)"
+     onmouseup="top.mouseUp(evt)"
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
