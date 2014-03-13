@@ -26,6 +26,7 @@ limitations under the License.
     width:            100%;
     height:           100%;
     margin:           0px;
+	border: 		  0;
     overflow:         hidden;
     text-align:       center;
     background-color: #000000;
@@ -42,46 +43,72 @@ limitations under the License.
   <canvas id="canvas" width="640" height="480"></canvas>
   
   <script type="text/javascript">
-var aspectRatio = 4 / 3;
+  
+(function() {
+	var aspectRatio = 4 / 3;
 
-// Find the canvas and graphics context.
-var canvas = document.getElementById("canvas");
-var gfx = canvas.getContext("2d");
+	// Find the canvas and graphics context.
+	var canvas = document.getElementById("canvas");
+	var gfx = canvas.getContext("2d");
 
-// Scale it to the window.
-if (window.innerWidth >= window.innerHeight * aspectRatio) {
-    canvas.width  = window.innerHeight * aspectRatio;
-    canvas.height = window.innerHeight;
-} else {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerWidth / aspectRatio;
-}
+	// Start listening to resize events and
+	// draw canvas.
+	initialize();
+ 
+	function initialize() {
+		// Register an event listener to
+		// call the resizeCanvas() function each time 
+		// the window is resized.
+		window.addEventListener('resize', resizeCanvas, false);
+                
+		// Draw canvas border for the first time.
+		resizeCanvas();
+	}
 
-// Make the canvas white with a 1-pixel red border to make sure it is exactly the right size in each environment.
-gfx.fillStyle = "white";
-gfx.fillRect(0, 0, canvas.width, canvas.height);
+	function redraw() {
+		// Make the canvas white with a 1-pixel red border to make sure it is exactly the right size in each environment.
+		gfx.fillStyle = "white";
+		gfx.fillRect(0, 0, canvas.width, canvas.height);
 
-gfx.beginPath();
-gfx.rect(0, 0, canvas.width, canvas.height);
+		gfx.beginPath();
+		gfx.rect(0, 0, canvas.width, canvas.height);
 
-gfx.strokeStyle = "red";
-gfx.stroke();
+		gfx.strokeStyle = "red";
+		gfx.stroke();
 
-// Draw the menu buttons.
-// TODO: Get the unscaled dimensions from each SVG file.
-var unscaled_button_width  = 281;
-var unscaled_button_height = 61;
+		// Draw the menu buttons.
+		// TODO: Get the unscaled dimensions from each SVG file.
+		var unscaled_button_width  = 281;
+		var unscaled_button_height = 61;
 
-var button_width  = canvas.width / 3;
-var button_height = unscaled_button_height * button_width / unscaled_button_width;
+		var button_width  = canvas.width / 3;
+		var button_height = unscaled_button_height * button_width / unscaled_button_width;
 
-var button_x     = (canvas.width - button_width) / 2;
-var top_button_y = (canvas.height - button_height) / 5;
+		var button_x     = (canvas.width - button_width) / 2;
+		var top_button_y = (canvas.height - button_height) / 5;
 
-gfx.drawSvg("images/start_button.svg", button_x, top_button_y, button_width, button_height);
-gfx.drawSvg("images/highscore_button.svg", button_x, top_button_y * 2, button_width, button_height);
-gfx.drawSvg("images/settings_button.svg", button_x, top_button_y * 3, button_width, button_height);
-gfx.drawSvg("images/rules_button.svg", button_x, top_button_y * 4, button_width, button_height);
+		gfx.drawSvg("images/start_button.svg", button_x, top_button_y, button_width, button_height);
+		gfx.drawSvg("images/highscore_button.svg", button_x, top_button_y * 2, button_width, button_height);
+		gfx.drawSvg("images/settings_button.svg", button_x, top_button_y * 3, button_width, button_height);
+		gfx.drawSvg("images/rules_button.svg", button_x, top_button_y * 4, button_width, button_height);
+	}
+
+	// Runs each time the DOM window resize event fires.
+	// Resets the canvas dimensions to match window,
+	// then draws the new borders accordingly.
+	function resizeCanvas() {
+		if (window.innerWidth >= window.innerHeight * aspectRatio) {
+			canvas.width  = window.innerHeight * aspectRatio;
+			canvas.height = window.innerHeight;
+		} else {
+			canvas.width  = window.innerWidth;
+			canvas.height = window.innerWidth / aspectRatio;
+		}
+		redraw();
+	}
+})();
+
+
   </script>
   
  </body>
