@@ -105,6 +105,13 @@ function goBack() {
     window.location.href = prevPage;
 }
 
+function startGame() {
+    "use strict";
+	
+	// Go to the game window.
+    window.location.href = "../game.html";
+}
+
 function settings() {
     "use strict";
 	
