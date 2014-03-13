@@ -104,3 +104,10 @@ function goBack() {
     // Navigate to the previous page.
     window.location.href = prevPage;
 }
+
+function settings() {
+    "use strict";
+	
+	// Go to the settings window.
+    window.location.href = "../settings.html";
+}
