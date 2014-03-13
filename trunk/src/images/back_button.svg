@@ -94,7 +94,7 @@
     </rdf:RDF>
   </metadata>
   <g
-     onclick="top.goBack()"
+     onclick="top.goBack(evt)"
      onmouseover="top.mouseOver(evt)"
      onmouseout="top.mouseOut(evt)"
      onmousedown="top.mouseDown(evt)"
