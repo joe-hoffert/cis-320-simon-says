@@ -24,68 +24,83 @@ function getTarget(evt) {
 function mouseOver(evt) {
     "use strict";
     
+    var button, edge;
+    
     // Try to find the button. If unsuccessful, return without doing anything.
-    var button = getTarget(evt);
+    button = getTarget(evt);
     if (!button) {
         return;
     }
     
     // TODO: Call onMouseDown if this was the last button pressed and the user never released the mouse button. (Is this even possible?)
     // Otherwise, make the button glow.
-    var edge = button.ownerDocument.getElementById("edge");
+    edge = button.ownerDocument.getElementById("edge");
     edge.style = edge.getAttribute("bright_text");
 }
 
 function mouseOut(evt) {
     "use strict";
     
+    var button, highlight, edge;
+    
     // Try to find the button. If unsuccessful, return without doing anything.
-    var button = getTarget(evt);
+    button = getTarget(evt);
     if (!button) {
         return;
     }
     
     // Make the button's spectral highlight brighter to give the impression of its being released.
-    var highlight = button.ownerDocument.getElementById("highlight");
+    highlight = button.ownerDocument.getElementById("highlight");
     highlight.style = highlight.getAttribute("bright_text");
     
     // Make the button stop glowing.
-    var edge = button.ownerDocument.getElementById("edge");
+    edge = button.ownerDocument.getElementById("edge");
     edge.style = edge.getAttribute("dark_text");
 }
 
 function mouseDown(evt) {
     "use strict";
     
+    var button, highlight, edge;
+    
     // Try to find the button. If unsuccessful, return without doing anything.
-    var button = getTarget(evt);
+    button = getTarget(evt);
     if (!button) {
         return;
     }
     
     // Make the button's spectral highlight darker to give the impression of its being pushed in.
-    var highlight = button.ownerDocument.getElementById("highlight");
+    highlight = button.ownerDocument.getElementById("highlight");
     highlight.style = highlight.getAttribute("dark_text");
     
     // Make the button stop glowing.
-    var edge = button.ownerDocument.getElementById("edge");
+    edge = button.ownerDocument.getElementById("edge");
     edge.style = edge.getAttribute("dark_text");
 }
 
 function mouseUp(evt) {
     "use strict";
     
+    var button, highlight, edge;
+    
     // Try to find the button. If unsuccessful, return without doing anything.
-    var button = getTarget(evt);
+    button = getTarget(evt);
     if (!button) {
         return;
     }
     
     // Make the button's spectral highlight brighter to give the impression of its being released.
-    var highlight = button.ownerDocument.getElementById("highlight");
+    highlight = button.ownerDocument.getElementById("highlight");
     highlight.style = highlight.getAttribute("bright_text");
     
     // Make the button start glowing again.
-    var edge = button.ownerDocument.getElementById("edge");
+    edge = button.ownerDocument.getElementById("edge");
     edge.style = edge.getAttribute("bright_text");
+}
+
+function goBack() {
+    "use strict";
+    
+    // Navigate to the previous page.
+    window.location.href = prevPage;
 }
