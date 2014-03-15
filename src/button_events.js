@@ -118,3 +118,10 @@ function settings() {
 	// Go to the settings window.
     window.location.href = "../settings.html";
 }
+
+function rules() {
+    "use strict";
+	
+	// Go to the rules window.
+    window.location.href = "../rules.html";
+}
