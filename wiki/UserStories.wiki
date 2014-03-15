@@ -10,7 +10,7 @@
  # The user can press the Settings button to be taken to a screen with a "Back" button and space for settings controls. (Stephen)
  # The user can press the Rules button to be taken to a screen with an explanation of the basic game rules and a "Back" button. (Ben)
  # Each "Back" button should return the user to the main menu. (Jeremy)
- # The canvas resizes itself dynamically whenever the window is resized. (Ben)
+ # The application resizes itself dynamically whenever the window is resized. (Ben)
  # The same code works in the same way on every platform and browser listed in U1:2. (Jeremy, Stephen, Ben)
  # While the game screen is shown, the four buttons light up one at a time in a random sequence. (Jeremy)
 
