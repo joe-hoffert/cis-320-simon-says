@@ -57,7 +57,7 @@ limitations under the License.
         button = document.getElementById(id);
         edge   = button.getSVGDocument().getElementById("edge");
         
-        edge.style = edge.getAttribute("bright_text");
+        edge.setAttribute("style", edge.getAttribute("bright_text"));
         
         setTimeout(function() {
             darkenButton(button);
@@ -70,7 +70,7 @@ limitations under the License.
         
         var edge = button.getSVGDocument().getElementById("edge");
         
-        edge.style = edge.getAttribute("dark_text");
+        edge.setAttribute("style", edge.getAttribute("dark_text"));
         
         setTimeout(lightUpRandomButton, 250);
     }
