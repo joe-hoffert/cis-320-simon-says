@@ -38,14 +38,44 @@ limitations under the License.
   
   <!-- Game Screen -->
   <object data="images/back_button.svg" type="image/svg+xml" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
-  <object data="images/blue_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:10%"></object>
-  <object data="images/red_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:60%"></object>
-  <object data="images/green_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:10%"></object>
-  <object data="images/yellow_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:60%"></object>
+  <object id="button0" data="images/blue_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:10%"></object>
+  <object id="button1" data="images/red_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:60%"></object>
+  <object id="button2" data="images/green_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:10%"></object>
+  <object id="button3" data="images/yellow_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:60%"></object>
   
   <script type="text/javascript">
     // The Back button should send the user back to the main menu.
     var prevPage = "../simon.html";
+    
+    /* Lights up a random button and sets a timer to darken it. */
+    function lightUpRandomButton() {
+        "use strict";
+        
+        var id, button, edge;
+        
+        id     = "button" + Math.floor(Math.random() * 4);
+        button = document.getElementById(id);
+        edge   = button.getSVGDocument().getElementById("edge");
+        
+        edge.style = edge.getAttribute("bright_text");
+        
+        setTimeout(function() {
+            darkenButton(button);
+         }, 500);
+    }
+    
+    /* Darkens the button given as an argument and sets a timer to light up another one. */
+    function darkenButton(button) {
+        "use strict";
+        
+        var edge = button.getSVGDocument().getElementById("edge");
+        
+        edge.style = edge.getAttribute("dark_text");
+        
+        setTimeout(lightUpRandomButton, 250);
+    }
+    
+    window.onload = lightUpRandomButton;
   </script>
  </body>
 </html>
