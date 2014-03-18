@@ -1,6 +1,11 @@
 #summary A list of all the user stories for each iteration of the project and long-term goals.
 #labels Phase-Requirements
 
+= Iteration 3 =
+
+ # Options to set the game rules are available in the Rules page - specifically, determine the color change (i.e. red means yellow). (Ben)
+
+
 = Iteration 2 =
 
  # The buttons have a smooth, 3D appearance. (Jeremy)
