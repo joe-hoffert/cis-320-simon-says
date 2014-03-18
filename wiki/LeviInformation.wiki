@@ -2,3 +2,5 @@
 
 User: Bemrick
 Password: password
+
+Put files in "/home/bemrick/public_html/CIS 320 Project/".
