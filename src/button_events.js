@@ -20,6 +20,13 @@ function getTarget(evt) {
     return false;
 }
 
+/* Forces the given element to be redrawn. Needed for Webkit-based browsers. */
+function forceRedraw(el) {
+  var t = el.ownerDocument.createTextNode(' ');
+  el.appendChild(t);
+  setTimeout(function() { el.removeChild(t); }, 0);
+}
+
 /* Updates the button's graphics in response to a mouse-over event. */
 function mouseOver(evt) {
     "use strict";
@@ -35,7 +42,9 @@ function mouseOver(evt) {
     // TODO: Call onMouseDown if this was the last button pressed and the user never released the mouse button. (Is this even possible?)
     // Otherwise, make the button glow.
     edge = button.ownerDocument.getElementById("edge");
-    edge.style = edge.getAttribute("bright_text");
+    edge.setAttribute("style", edge.getAttribute("bright_text"));
+    
+    forceRedraw(button);
 }
 
 function mouseOut(evt) {
@@ -51,11 +60,13 @@ function mouseOut(evt) {
     
     // Make the button's spectral highlight brighter to give the impression of its being released.
     highlight = button.ownerDocument.getElementById("highlight");
-    highlight.style = highlight.getAttribute("bright_text");
+    highlight.setAttribute("style", highlight.getAttribute("bright_text"));
     
     // Make the button stop glowing.
     edge = button.ownerDocument.getElementById("edge");
-    edge.style = edge.getAttribute("dark_text");
+    edge.setAttribute("style", edge.getAttribute("dark_text"));
+    
+    forceRedraw(button);
 }
 
 function mouseDown(evt) {
@@ -71,11 +82,13 @@ function mouseDown(evt) {
     
     // Make the button's spectral highlight darker to give the impression of its being pushed in.
     highlight = button.ownerDocument.getElementById("highlight");
-    highlight.style = highlight.getAttribute("dark_text");
+    highlight.setAttribute("style", highlight.getAttribute("dark_text"));
     
     // Make the button stop glowing.
     edge = button.ownerDocument.getElementById("edge");
-    edge.style = edge.getAttribute("dark_text");
+    edge.setAttribute("style", edge.getAttribute("dark_text"));
+    
+    forceRedraw(button);
 }
 
 function mouseUp(evt) {
@@ -91,11 +104,13 @@ function mouseUp(evt) {
     
     // Make the button's spectral highlight brighter to give the impression of its being released.
     highlight = button.ownerDocument.getElementById("highlight");
-    highlight.style = highlight.getAttribute("bright_text");
+    highlight.setAttribute("style", highlight.getAttribute("bright_text"));
     
     // Make the button start glowing again.
     edge = button.ownerDocument.getElementById("edge");
-    edge.style = edge.getAttribute("bright_text");
+    edge.setAttribute("style", edge.getAttribute("bright_text"));
+    
+    forceRedraw(button);
 }
 
 function goBack() {
@@ -117,11 +132,4 @@ function settings() {
 	
 	// Go to the settings window.
     window.location.href = "../settings.html";
-}
-
-function rules() {
-    "use strict";
-	
-	// Go to the rules window.
-    window.location.href = "../rules.html";
 }
