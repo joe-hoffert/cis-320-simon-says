@@ -3,8 +3,12 @@
 
 = Iteration 3 =
 
- # Options to set the game rules are available in the Rules page - specifically, determine the color change (i.e. red means yellow). (Ben)
-
+ # The user can set the game rules in the Rules page - specifically, determine the color change (i.e. red means yellow and so on). (Ben)
+ # The user can press the High Scores button to be taken to a screen with a "Back" button and space for high scores records. (Stephen)
+ # When the user clicks "Start Game," a instructions screen will appear with a how to play the game section and the current rule set. (Jeremy)
+ # The user can click "Start Game" and be taken to the game screen and play a game with the default rules (after closing the instruction screen). (Jeremy)
+ # The buttons on each screen are scaled appropriately to the screen. (Ben, Stephen, Jeremy)
+ # The same code works in the same way on every platform and browser listed in U1:2. (Jeremy, Stephen, Ben)
 
 = Iteration 2 =
 
