@@ -8,6 +8,7 @@
  # When the user clicks "Start Game," an instructions screen will appear with a how to play the game section and the current rule set. (Jeremy)
  # The user can click "Start Game" and be taken to the game screen and play a game with the default rules (after closing the instruction screen). (Jeremy)
  # The buttons on each screen are scaled appropriately to the screen (i.e. no cropping of buttons, constant aspect ratio in the game area, etc.). (Ben, Stephen, Jeremy)
+ # To prevent confusion, the buttons used for the game logic do not glow when the mouse hovers over them.
 
 = Iteration 2 =
 
