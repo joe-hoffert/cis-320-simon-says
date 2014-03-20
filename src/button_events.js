@@ -133,3 +133,18 @@ function settings() {
 	// Go to the settings window.
     window.location.href = "../settings.html";
 }
+
+function rules() {
+    "use strict";
+	
+	// Go to the settings window.
+    window.location.href = "../rules.html";
+}
+
+
+function highScore() {
+    "use strict";
+	
+	// Go to the settings window.
+    window.location.href = "../highScore.html";
+}
