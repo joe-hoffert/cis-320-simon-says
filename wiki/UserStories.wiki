@@ -33,3 +33,4 @@
 
  # Two users can play against each other on separate devices.
  # Rule sets can be altered between games.
+ # The full game works identically on every platform and browser listed in US1:2.
