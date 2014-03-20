@@ -33,11 +33,12 @@ limitations under the License.
  </head>
  
  <body>
-  <!-- Import all of the game's other Javascript files. -->
+  <!-- Import all of the necessary Javascript files. -->
   <script type="text/javascript" src="button_events.js"></script>
+  <script type="text/javascript" src="game_helpers.js"></script>
   
   <!-- Game Screen -->
-  <object data="images/back_button.svg" type="image/svg+xml" height="10%" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
+  <object data="images/back_button.svg" type="image/svg+xml" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
   <object id="button0" data="images/blue_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:10%"></object>
   <object id="button1" data="images/red_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:60%"></object>
   <object id="button2" data="images/green_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:10%"></object>
@@ -47,35 +48,148 @@ limitations under the License.
     // The Back button should send the user back to the main menu.
     var prevPage = "../simon.html";
     
-    /* Lights up a random button and sets a timer to darken it. */
-    function lightUpRandomButton() {
+    // For maximum modifiability, determine the number of buttons on the screen at runtime.
+    var NUM_BUTTONS = 0;
+    while (document.getElementById(numberToId(NUM_BUTTONS))) {
+        ++NUM_BUTTONS;
+    }
+    
+    var BRIGHT_TO_DARK_TIME_RATIO   = 2;
+    var INITIAL_BRIGHT_MILLISECONDS = 500;
+    var INITIAL_SEQUENCE_LENGTH     = 3;
+    
+    var flashing; // Tells whether the program is flashing buttons or waiting for user input.
+    
+    var flashingButtonSequence; // This will hold values in [0..NUM_BUTTONS], each number corresponding to a button.
+    var numButtonsFlashed;      // The number of buttons flashed so far in the sequence, to track which is next.
+    var numButtonsClicked;
+    
+    var rules; // An array mapping flashed buttons (indices) to the correct buttons to click (values), using the same number system as
+               // in flashingButtonSequence.
+    
+    var lives = 3;
+    
+    /* Starts the game by creating an initial sequence of buttons to flash and flashing the first one. */
+    function startGame() {
+        "use strict";
+        
+        var button_number;
+        
+        flashingButtonSequence = new Array();
+        for (var i = 0; i < INITIAL_SEQUENCE_LENGTH; ++i) {
+            addButtonToSequence();
+        }
+        
+        // TODO: Load the rules from a cookie instead of hard-coding them here.
+        rules = new Array();
+        for (var i = 0; i < NUM_BUTTONS; ++i) {
+            rules[i] = i;
+        }
+        
+        startFlashingButtons();
+    }
+    
+    /* Begins the sequence of button flashes that the user must reproduce according to the current rules. */
+    function startFlashingButtons() {
+        flashing = true;
+        
+        button_number = flashingButtonSequence[0];
+        lightUpButton(button_number, INITIAL_BRIGHT_MILLISECONDS);
+        
+        numButtonsFlashed = 1;
+    }
+    
+    /* Flashes the next button if the sequence has not yet been shown completely. */
+    function nextStep() {
+        "use strict";
+        
+        var button_number;
+        
+        if (numButtonsFlashed < flashingButtonSequence.length) {
+            button_number = flashingButtonSequence[numButtonsFlashed];
+            lightUpButton(button_number, INITIAL_BRIGHT_MILLISECONDS);
+            
+            ++numButtonsFlashed;
+        }
+        
+        else if (flashing) {
+            // This serves as a signal to tell the user it's time to start pressing buttons.
+            for (var i = 0; i < NUM_BUTTONS; ++i) {
+                lightUpButton(i, INITIAL_BRIGHT_MILLISECONDS);
+            }
+            
+            flashing          = false;
+            numButtonsClicked = 0;
+        }
+    }
+    
+    /* Reacts to a click on any of the main game buttons. */
+    function onGameButtonClick(evt) {
+        "use strict";
+        
+        var element, button, button_number;
+        
+        // The player should press the buttons only after they finish flashing.
+        if (flashing) {
+            return;
+        }
+        
+        element = getTarget(evt);
+        for (button_number = 0; button_number < NUM_BUTTONS; ++button_number) {
+            if (document.getElementById(numberToId(button_number)).getSVGDocument() == element.ownerDocument) {
+                break;
+            }
+        }
+        
+        if (isClickCorrect(button_number)) {
+            if (++numButtonsClicked == flashingButtonSequence.length) {
+                addButtonToSequence();
+                startFlashingButtons();
+            }
+        } else {
+            if (--lives > 0) {
+                startFlashingButtons();
+            } else {
+                gameOver();
+            }
+        }
+    }
+    
+    /* Lights up the button with the given number and sets a timer to darken it after the specified number of milliseconds. */
+    function lightUpButton(button_number, milliseconds) {
         "use strict";
         
         var id, button, edge;
         
-        id     = "button" + Math.floor(Math.random() * 4);
+        id     = numberToId(button_number);
         button = document.getElementById(id);
         edge   = button.getSVGDocument().getElementById("edge");
         
         edge.setAttribute("style", edge.getAttribute("bright_text"));
         
+        // WebKit-based browsers like Chrome and Safari will not redraw the button automatically.
+        forceRedraw(button);
+        
         setTimeout(function() {
-            darkenButton(button);
-         }, 500);
+            darkenButton(button, milliseconds / BRIGHT_TO_DARK_TIME_RATIO);
+         }, milliseconds);
     }
     
-    /* Darkens the button given as an argument and sets a timer to light up another one. */
-    function darkenButton(button) {
+    /* Darkens the button given as an argument and sets a timer to continue the game logic in the given number of milliseconds. */
+    function darkenButton(button, milliseconds) {
         "use strict";
         
         var edge = button.getSVGDocument().getElementById("edge");
         
         edge.setAttribute("style", edge.getAttribute("dark_text"));
         
-        setTimeout(lightUpRandomButton, 250);
+        // WebKit-based browsers like Chrome and Safari will not redraw the button automatically.
+        forceRedraw(button);
+        
+        setTimeout(nextStep, milliseconds);
     }
     
-    window.onload = lightUpRandomButton;
+    window.onload = startGame;
   </script>
  </body>
 </html>
