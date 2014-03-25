@@ -37,11 +37,28 @@ limitations under the License.
  </head>
  
  <body>
+  <script type="text/javascript" src="cookies.js"></script>
+  
   <h1>How to Play</h1>
   <p>The buttons will flash one at a time. Pay attention to the sequence because you will have to reproduce it. After all four buttons have
   flashed at the same time, press the buttons in the order in which you saw them flash. But be careful! Instead of pressing the button that
   flashed, you will need to press the appropriate one according to the diagram below (set on the Rules page):</p>
   
   <!-- TODO: Draw the buttons and an arrow in a table. -->
+  <div id="rulesDiv"></div>
+  
+  <script type="text/javascript">
+    setCookie("simon_rule0", "0");
+    setCookie("simon_rule1", "1");
+    setCookie("simon_rule2", "2");
+    setCookie("simon_rule3", "3");
+    
+    var colors = ["Blue", "Red", "Green", "Yellow"];
+    document.getElementById("rulesDiv").innerHTML =
+         "Blue   -> " + colors[parseInt(getCookie("simon_rule0"))] +
+     "<br>Red    -> " + colors[parseInt(getCookie("simon_rule1"))] +
+     "<br>Green  -> " + colors[parseInt(getCookie("simon_rule2"))] +
+     "<br>Yellow -> " + colors[parseInt(getCookie("simon_rule3"))];
+  </script>
  </body>
 </html>
