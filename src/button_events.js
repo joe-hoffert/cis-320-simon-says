@@ -117,9 +117,11 @@ function mouseDown(evt, darkenEdge) {
 function mouseUp(evt, brightenEdge) {
     "use strict";
     
-    var button, highlight, edge;
+    var button, highlight, edge, MILLISECONDS_TO_REDRAW;
     
     brightenEdge = typeof brightenEdge !== "undefined" ? brightenEdge : true;
+    
+    MILLISECONDS_TO_REDRAW = 100;
     
     // Try to find the button. If unsuccessful, return without doing anything.
     button = getTarget(evt);
@@ -127,17 +129,20 @@ function mouseUp(evt, brightenEdge) {
         return;
     }
     
-    // Make the button's spectral highlight brighter to give the impression of its being released.
-    highlight = button.ownerDocument.getElementById("highlight");
-    highlight.setAttribute("style", highlight.getAttribute("bright_text"));
-    
-    if (brightenEdge) {
-        // Make the button start glowing again.
-        edge = button.ownerDocument.getElementById("edge");
-        edge.setAttribute("style", edge.getAttribute("bright_text"));
-    }
-    
-    forceRedraw(button);
+    // This timer makes sure the button does not change back to the released state too quickly for the user to see.
+    setTimeout(function() {
+        // Make the button's spectral highlight brighter to give the impression of its being released.
+        highlight = button.ownerDocument.getElementById("highlight");
+        highlight.setAttribute("style", highlight.getAttribute("bright_text"));
+        
+        if (brightenEdge) {
+            // Make the button start glowing again.
+            edge = button.ownerDocument.getElementById("edge");
+            edge.setAttribute("style", edge.getAttribute("bright_text"));
+        }
+        
+        forceRedraw(button);
+     }, MILLISECONDS_TO_REDRAW);
 }
 
 function goBack() {
