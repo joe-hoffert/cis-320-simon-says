@@ -28,12 +28,30 @@ limitations under the License.
   <script type="text/javascript" src="button_events.js"></script>
   
   <!-- The main menu -->
-  <object data="images/start_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:fixed;top:10%;margin-left:37.5%"></object>
-  <object data="images/highscore_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:fixed;top:30%;margin-left:37.5%"></object>
-  <object data="images/settings_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:fixed;top:50%;margin-left:37.5%"></object>
-  <object data="images/rules_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:fixed;top:70%;margin-left:37.5%"></object>
+  <div id="menuDiv">
+   <object data="images/start_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:10%;margin-left:37.5%"></object>
+   <object data="images/highscore_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:30%;margin-left:37.5%"></object>
+   <object data="images/settings_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:50%;margin-left:37.5%"></object>
+   <object data="images/rules_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:70%;margin-left:37.5%"></object>
+  </div>
   
   <script type="text/javascript">
+    var aspectRatio = 4 / 3;
+    var menu = document.getElementById("menuDiv");
+    
+    // Scale the menu to the window, keeping a constant aspect ratio.
+    function resizeMenu() {
+        "use strict";
+        
+        if (window.innerWidth >= window.innerHeight * aspectRatio) {
+            menu.setAttribute("width", window.innerHeight * aspectRatio);
+            menu.setAttribute("height", window.innerHeight);
+        } else {
+            menu.setAttribute("width", window.innerWidth);
+            menu.setAttribute("height", window.innerWidth / aspectRatio);
+        }
+    }
+    
     /* Called when the Start Game button is pressed. */
     function startGame() {
         "use strict";
@@ -41,6 +59,8 @@ limitations under the License.
         // Go to the instructions page.
         window.location.href = "../instructions.html";
     }
+    
+    window.onresize = resizeMenu;
   </script>
  </body>
 </html>
