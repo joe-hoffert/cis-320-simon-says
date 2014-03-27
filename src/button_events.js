@@ -55,7 +55,6 @@ function mouseOver(evt) {
         return;
     }
     
-    // TODO: Call onMouseDown if this was the last button pressed and the user never released the mouse button. (Is this even possible?)
     // Otherwise, make the button glow.
     edge = button.ownerDocument.getElementById("edge");
     edge.setAttribute("style", edge.getAttribute("bright_text"));
@@ -63,10 +62,12 @@ function mouseOver(evt) {
     forceRedraw(button);
 }
 
-function mouseOut(evt) {
+function mouseOut(evt, darkenEdge) {
     "use strict";
     
     var button, highlight, edge;
+    
+    darkenEdge = typeof darkenEdge !== "undefined" ? darkenEdge : true;
     
     // Try to find the button. If unsuccessful, return without doing anything.
     button = getTarget(evt);
@@ -78,9 +79,11 @@ function mouseOut(evt) {
     highlight = button.ownerDocument.getElementById("highlight");
     highlight.setAttribute("style", highlight.getAttribute("bright_text"));
     
-    // Make the button stop glowing.
-    edge = button.ownerDocument.getElementById("edge");
-    edge.setAttribute("style", edge.getAttribute("dark_text"));
+    if (darkenEdge) {
+        // Make the button stop glowing.
+        edge = button.ownerDocument.getElementById("edge");
+        edge.setAttribute("style", edge.getAttribute("dark_text"));
+    }
     
     forceRedraw(button);
 }
