@@ -52,5 +52,5 @@ function numberToId(number) {
 function idToNumber(id) {
     "use strict";
     
-    return parseInt(id.substr("button".length));
+    return parseInt(id.substr("button".length), 10);
 }
