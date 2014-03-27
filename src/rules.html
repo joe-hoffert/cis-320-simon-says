@@ -33,22 +33,52 @@ limitations under the License.
  </head>
  
  <body>
-  <!-- Import all of the game's other Javascript files. -->
-  <script type="text/javascript" src="button_events.js"></script>
+  <!-- Import all of the rules pages' other Javascript files. -->
+  <script type="text/javascript" src="rules_events.js"></script>
   
   <!-- Rules Screen -->
-  <object data="images/back_button.svg" type="image/svg+xml" height="10%" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
+  <!-- first column / rule column --> 
+  <img style="position:fixed;top:10%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/blue_game_button.svg"></img>
+  <img style="position:fixed;top:30%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/red_game_button.svg"></img>
+  <img style="position:fixed;top:50%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/green_game_button.svg"></img>
+  <img style="position:fixed;top:70%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/yellow_game_button.svg"></img>
+  <!-- second column -->
+  <object id="button4" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:10%;margin-left:30%"></object>
+  <object id="button5" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:30%;margin-left:30%"></object>
+  <object id="button6" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:50%;margin-left:30%"></object>
+  <object id="button7" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:70%;margin-left:30%"></object>
+  <!-- third column -->
+  <object id="button8" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:10%;margin-left:45%"></object>
+  <object id="button9" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:30%;margin-left:45%"></object>
+  <object id="button10" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:50%;margin-left:45%"></object>
+  <object id="button11" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:70%;margin-left:45%"></object>
+  <!-- fourth column -->
+  <object id="button12" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:10%;margin-left:60%"></object>
+  <object id="button13" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:30%;margin-left:60%"></object>
+  <object id="button14" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:50%;margin-left:60%"></object>
+  <object id="button15" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:70%;margin-left:60%"></object>
+  <!-- fifth column -->
+  <object id="button16" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:10%;margin-left:75%"></object>
+  <object id="button17" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:30%;margin-left:75%"></object>
+  <object id="button18" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:50%;margin-left:75%"></object>
+  <object id="button19" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:70%;margin-left:75%"></object>
   
+  <!-- Other assets -->
+  <object data="images/back_button.svg" type="image/svg+xml" height="10%" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
+  <img style="position:fixed;top:40%;margin-left:19.5%" type="image/svg" height="10%" width="10%" src="images/arrow.svg"></img>
+
   <script type="text/javascript">
     // The Back button should send the user back to the main menu.
     var prevPage = "../simon.html";
   </script>
   
+  <!-- Temp removed -->
+  <!-- 
   <p>Basic Game Rules:</p>
   <p><FONT COLOR="FFFFFF">1. Wait for a color section to light up</font></p>
   <p><FONT COLOR="FFFFFF">2. Based upon the established rules for the current session, press the associated color section</font></p>
   <p><FONT COLOR="FFFFFF">3. Pressing an incorrect color section will end the current game</font></p>
   <p><FONT COLOR="FFFFFF">4. Pressing the correct color section will add to your score</font></p>
-  
+  -->
  </body>
 </html>
