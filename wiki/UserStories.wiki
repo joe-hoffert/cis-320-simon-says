@@ -3,7 +3,7 @@
 
 = Iteration 3 =
 
- # The user can set the game rules in the Rules page - specifically, determine the color change (i.e. red means yellow and so on). (Ben)
+ # The user can see the color grid for changing the rules in the rules page (i.e. red means yellow and so on). (Ben)
  # The user can press the High Scores button to be taken to a screen with a "Back" button and space for high scores records. (Stephen)
  # When the user clicks "Start Game" on the main menu, an instructions screen will appear with a "How to Play" section and the current rule set. (Jeremy)
  # On the instructions screen, the user can click "Start Game" to be taken to the game screen and play a game with the rules shown on the instructions screen. (Jeremy)
