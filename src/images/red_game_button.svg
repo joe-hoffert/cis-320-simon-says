@@ -10,6 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   preserveAspectRatio="none"
+   viewBox="0 0 281 281"
    width="281"
    height="281"
    id="svg2"
@@ -101,7 +103,7 @@
      transform="translate(-249.5,-457.875)">
     <rect
        style="fill:url(#radialGradient3851);fill-opacity:1;stroke:none"
-       id="rect2999"
+       id="red_button_rect"
        width="280"
        height="280"
        x="250"
