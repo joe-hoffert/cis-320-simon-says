@@ -48,3 +48,26 @@ function getCookie(cookieName) {
     
     return "";
 }
+
+/* A convenience method for setting a rule. Each argument should be an integer from 0 to one less than the number of game buttons. */
+function setRule(buttonFlashed, buttonPressed) {
+    "use strict";
+    
+    setCookie("simon_rule" + buttonFlashed, buttonPressed);
+}
+
+/* A convenience method for getting a rule. The argument should be an integer from 0 to one less than the number of game buttons.
+   Returns the number, in the same range, of the button that should be pressed in response to the given button being flashed. */
+function getRule(buttonFlashed) {
+    "use strict";
+    
+    var cookie = getCookie("simon_rule" + buttonFlashed);
+    
+    // If the rule has not been set yet, set the default rule.
+    if (cookie == "") {
+        setRule(buttonFlashed, buttonFlashed);
+        return buttonFlashed;
+    }
+    
+    return parseInt(cookie, 10);
+}
