@@ -25,7 +25,6 @@ limitations under the License.
   html, body {
     width:            100%;
     height:           100%;
-    overflow:         hidden;
     color:            #ffffff;
     background-color: #000000;
   }
@@ -37,28 +36,74 @@ limitations under the License.
  </head>
  
  <body>
+  <script type="text/javascript" src="button_events.js"></script>
   <script type="text/javascript" src="cookies.js"></script>
   
-  <h1>How to Play</h1>
-  <p>The buttons will flash one at a time. Pay attention to the sequence because you will have to reproduce it. After all four buttons have
-  flashed at the same time, press the buttons in the order in which you saw them flash. But be careful! Instead of pressing the button that
-  flashed, you will need to press the appropriate one according to the diagram below (set on the Rules page):</p>
+  <object data="images/start_button.svg" type="image/svg+xml" width="25%" style="position:fixed;top:0%;left:0%"></object>
   
-  <!-- TODO: Draw the buttons and an arrow in a table. -->
-  <div id="rulesDiv"></div>
+  <table width="100%" height="100%">
+   <tr>
+    <td>
+     <h1>How to Play</h1>
+     <p>The buttons will flash one at a time. Pay attention to the sequence because you will have to reproduce it. After all four buttons have
+     flashed at the same time, press the buttons in the order in which you saw them flash. But be careful! Instead of pressing the button that
+     flashed, you will need to press the appropriate one according to the diagram below (set on the Rules page):</p>
+    </td>
+   </tr>
+   
+   <tr>
+    <td>
+     <table width="100%" height="100%">
+      <tr>
+       <th>If this button flashes...</th>
+       <th></th>
+       <th>...press this button.</th>
+      </tr>
+      <tr>
+       <th><img src="images/blue_game_button.svg" height="32px"></th>
+       <th rowspan="4"><img src="images/arrow.svg" height="48px"></img></th>
+       <th><img id="button0" height="32px"></th>
+      </tr>
+      <tr>
+       <th><img src="images/red_game_button.svg" height="32px"></th>
+       <th><img id="button1" height="32px"></th>
+      </tr>
+      <tr>
+       <th><img src="images/green_game_button.svg" height="32px"></th>
+       <th><img id="button2" height="32px"></th>
+      </tr>
+      <tr>
+       <th><img src="images/yellow_game_button.svg" height="32px"></th>
+       <th><img id="button3" height="32px"></th>
+      </tr>
+     </table>
+    </td>
+   </tr>
+  </table>
   
   <script type="text/javascript">
-    setCookie("simon_rule0", "0");
-    setCookie("simon_rule1", "1");
-    setCookie("simon_rule2", "2");
-    setCookie("simon_rule3", "3");
+    var gameButtonFilenames, NUM_BUTTONS, i;
     
-    var colors = ["Blue", "Red", "Green", "Yellow"];
-    document.getElementById("rulesDiv").innerHTML =
-         "Blue   -> " + colors[parseInt(getCookie("simon_rule0"))] +
-     "<br>Red    -> " + colors[parseInt(getCookie("simon_rule1"))] +
-     "<br>Green  -> " + colors[parseInt(getCookie("simon_rule2"))] +
-     "<br>Yellow -> " + colors[parseInt(getCookie("simon_rule3"))];
+    gameButtonFilenames =
+        ["images/blue_game_button.svg", "images/red_game_button.svg", "images/green_game_button.svg", "images/yellow_game_button.svg"];
+    
+    // For maximum modifiability, determine the number of buttons on the screen at runtime.
+    var NUM_BUTTONS = 0;
+    while (document.getElementById("button" + NUM_BUTTONS)) {
+        NUM_BUTTONS += 1;
+    }
+    
+    for (i = 0; i < NUM_BUTTONS; i += 1) {
+        document.getElementById("button" + i).setAttribute("src", gameButtonFilenames[getRule(i)]);
+    }
+    
+    /* Called when the Start Game button is pressed. */
+    function startGame() {
+        "use strict";
+    
+        // Go to the game page.
+        window.location.href = "../game.html";
+    }
   </script>
  </body>
 </html>
