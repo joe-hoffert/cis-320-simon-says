@@ -95,6 +95,7 @@
   </metadata>
   <g
      onclick="top.onGameButtonClick(evt)"
+     onmouseout="top.mouseOut(evt, false)"
      onmousedown="top.mouseDown(evt, false)"
      onmouseup="top.mouseUp(evt, false)"
      inkscape:label="Layer 1"
