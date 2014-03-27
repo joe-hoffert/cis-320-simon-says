@@ -144,30 +144,23 @@ function goBack() {
     window.location.href = prevPage;
 }
 
-function startGame() {
-    "use strict";
-	
-	// Go to the game window.
-    window.location.href = "../game.html";
-}
-
 function settings() {
     "use strict";
 	
-	// Go to the settings window.
+	// Go to the settings page.
     window.location.href = "../settings.html";
 }
 
 function rules() {
     "use strict";
-	
-	// Go to the settings window.
+    
+    // Go to the rules page.
     window.location.href = "../rules.html";
 }
 
 function highScore() {
     "use strict";
-	
-	// Go to the settings window.
+    
+    // Go to the high score page.
     window.location.href = "../highScore.html";
 }
