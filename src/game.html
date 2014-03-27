@@ -38,20 +38,22 @@ limitations under the License.
   <script type="text/javascript" src="game_helpers.js"></script>
   
   <!-- Game Screen -->
-  <object data="images/back_button.svg" type="image/svg+xml" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
-  <object id="button0" data="images/blue_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:10%"></object>
-  <object id="button1" data="images/red_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:10%;margin-left:60%"></object>
-  <object id="button2" data="images/green_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:10%"></object>
-  <object id="button3" data="images/yellow_game_button.svg" type="image/svg+xml" width="100%" style="position:fixed;top:60%;margin-left:60%"></object>
+  <object data="images/back_button.svg" type="image/svg+xml" height="10%"></object><br>
+  <object id="button0" data="images/blue_game_button.svg" type="image/svg+xml" width="49%" height="45%"></object>
+  <object id="button1" data="images/red_game_button.svg" type="image/svg+xml" width="49%" height="45%"></object>
+  <object id="button2" data="images/green_game_button.svg" type="image/svg+xml" width="49%" height="45%"></object>
+  <object id="button3" data="images/yellow_game_button.svg" type="image/svg+xml" width="49%" height="45%"></object>
   
   <script type="text/javascript">
+    var startFlashingButtons, lightUpButton;
+    
     // The Back button should send the user back to the main menu.
     var prevPage = "../simon.html";
     
     // For maximum modifiability, determine the number of buttons on the screen at runtime.
     var NUM_BUTTONS = 0;
     while (document.getElementById(numberToId(NUM_BUTTONS))) {
-        ++NUM_BUTTONS;
+        NUM_BUTTONS += 1;
     }
     
     var BRIGHT_TO_DARK_TIME_RATIO   = 2;
@@ -70,20 +72,19 @@ limitations under the License.
     var lives = 3;
     
     /* Starts the game by creating an initial sequence of buttons to flash and flashing the first one. */
-    function startGame() {
+    function start() {
         "use strict";
         
-        var button_number;
+        var i;
         
-        flashingButtonSequence = new Array();
-        for (var i = 0; i < INITIAL_SEQUENCE_LENGTH; ++i) {
+        flashingButtonSequence = [];
+        for (i = 0; i < INITIAL_SEQUENCE_LENGTH; i += 1) {
             addButtonToSequence();
         }
         
-        // TODO: Load the rules from a cookie instead of hard-coding them here.
-        rules = new Array();
-        for (var i = 0; i < NUM_BUTTONS; ++i) {
-            rules[i] = i;
+        rules = [];
+        for (i = 0; i < NUM_BUTTONS; i += 1) {
+            rules[i] = getRule(i);
         }
         
         startFlashingButtons();
@@ -91,9 +92,11 @@ limitations under the License.
     
     /* Begins the sequence of button flashes that the user must reproduce according to the current rules. */
     function startFlashingButtons() {
+        "use strict";
+        
         flashing = true;
         
-        button_number = flashingButtonSequence[0];
+        var button_number = flashingButtonSequence[0];
         lightUpButton(button_number, INITIAL_BRIGHT_MILLISECONDS);
         
         numButtonsFlashed = 1;
@@ -103,18 +106,18 @@ limitations under the License.
     function nextStep() {
         "use strict";
         
-        var button_number;
+        var button_number, i;
         
         if (numButtonsFlashed < flashingButtonSequence.length) {
             button_number = flashingButtonSequence[numButtonsFlashed];
             lightUpButton(button_number, INITIAL_BRIGHT_MILLISECONDS);
             
-            ++numButtonsFlashed;
+            numButtonsFlashed += 1;
         }
         
         else if (flashing) {
             // This serves as a signal to tell the user it's time to start pressing buttons.
-            for (var i = 0; i < NUM_BUTTONS; ++i) {
+            for (i = 0; i < NUM_BUTTONS; i += 1) {
                 lightUpButton(i, INITIAL_BRIGHT_MILLISECONDS);
             }
             
@@ -127,7 +130,7 @@ limitations under the License.
     function onGameButtonClick(evt) {
         "use strict";
         
-        var element, button, button_number;
+        var element, button_number;
         
         // The player should press the buttons only after they finish flashing.
         if (flashing) {
@@ -135,19 +138,21 @@ limitations under the License.
         }
         
         element = getTarget(evt);
-        for (button_number = 0; button_number < NUM_BUTTONS; ++button_number) {
+        for (button_number = 0; button_number < NUM_BUTTONS; button_number += 1) {
             if (document.getElementById(numberToId(button_number)).getSVGDocument() == element.ownerDocument) {
                 break;
             }
         }
         
         if (isClickCorrect(button_number)) {
-            if (++numButtonsClicked == flashingButtonSequence.length) {
+            numButtonsClicked += 1;
+            if (numButtonsClicked == flashingButtonSequence.length) {
                 addButtonToSequence();
                 startFlashingButtons();
             }
         } else {
-            if (--lives > 0) {
+            lives -= 1;
+            if (lives > 0) {
                 startFlashingButtons();
             } else {
                 gameOver();
@@ -189,7 +194,7 @@ limitations under the License.
         setTimeout(nextStep, milliseconds);
     }
     
-    window.onload = startGame;
+    window.onload = start;
   </script>
  </body>
 </html>
