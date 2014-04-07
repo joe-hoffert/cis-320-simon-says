@@ -37,67 +37,48 @@ limitations under the License.
   <object data="images/back_button.svg" type="image/svg+xml" height="10%" width="10%"></object><br>
   
   <table width="100%">
-   <tr>
-    <th width="4em">Rank</th>
-    <th>Name</th>
-    <th>Score</th>
-   </tr>
-   <tr>
-    <td>1</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>2</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>3</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>4</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>5</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>6</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>7</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>8</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>9</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
-   <tr>
-    <td>10</td>
-    <td>----</td>
-    <td>0</td>
-   </tr>
+   <thead>
+    <tr>
+     <th width="4em">Rank</th>
+     <th>Name</th>
+     <th>Score</th>
+    </tr>
+   </thead>
+   <tbody id="highscore_table_body">
+   </tbody>
   </table>
+  
+  <script type="text/javascript" src="cookies.js"></script>
   
   <script type="text/javascript">
     // The Back button should send the user back to the main menu.
-    var prevPage = "../simon.html";
+    var prevPage, table, i, cookie, html;
+    prevPage = "../simon.html";
+    
+    table = document.getElementById("highscore_table_body");
+    for (i = 1; i <= 10; i += 1) {
+        html = "<tr><td>" + i + "</td><td>";
+        
+        cookie = getHighScoreName(i);
+        if (cookie === "") {
+            html += "----";
+        } else {
+            html += cookie;
+        }
+        
+        html += "</td><td>";
+        
+        cookie = getHighScore(i);
+        if (cookie === "") {
+            html += "0";
+        } else {
+            html += cookie;
+        }
+        
+        html += "</td></tr>";
+        
+        table.innerHTML += html;
+    }
   </script>
- 
  </body>
 </html>
