@@ -20,11 +20,27 @@
  limitations under the License.
  *******************************************/
 
-/* Sets the value of the specified cookie. The cookie will only expire when the browser is closed. */
-function setCookie(cookieName, value) {
+var IMMORTAL_COOKIE_YEARS, MAX_NUM_HIGHSCORES;
+IMMORTAL_COOKIE_YEARS = 1000;
+MAX_NUM_HIGHSCORES    = 10;
+
+/* Sets the value of the specified cookie. If the expiry is undefined, the cookie will expire when the browser is closed.
+   The path points to the file or directory in which the cookie can be accessed ("/" for the whole site). An undefined path
+   means only the currently running file can access the cookie. */
+function setCookie(cookieName, value, expiry, path) {
     "use strict";
     
-    document.cookie = cookieName + "=" + value;
+    var cookieString = cookieName + "=" + value;
+    
+    if (expiry !== undefined) {
+        cookieString += "; expires=" + expiry;
+    }
+    
+    if (path !== undefined) {
+        cookieString += "; path=" + path;
+    }
+    
+    document.cookie = cookieString;
 }
 
 /* Returns the value of the specified cookie, or "" if the cookie does not exist.
@@ -53,7 +69,10 @@ function getCookie(cookieName) {
 function setRule(buttonFlashed, buttonPressed) {
     "use strict";
     
-    setCookie("simon_rule" + buttonFlashed, buttonPressed);
+    var date = new Date();
+    date.setFullYear(date.getFullYear() + IMMORTAL_COOKIE_YEARS); // The rule should never expire.
+    
+    setCookie("simon_rule" + buttonFlashed, buttonPressed, date, "/");
 }
 
 /* A convenience method for getting a rule. The argument should be an integer from 0 to one less than the number of game buttons.
@@ -61,7 +80,9 @@ function setRule(buttonFlashed, buttonPressed) {
 function getRule(buttonFlashed) {
     "use strict";
     
-    var cookie = getCookie("simon_rule" + buttonFlashed);
+    var cookie, PARSE_DECIMAL;
+    cookie = getCookie("simon_rule" + buttonFlashed);
+    PARSE_DECIMAL = 10;
     
     // If the rule has not been set yet, set the default rule.
     if (cookie == "") {
@@ -69,5 +90,61 @@ function getRule(buttonFlashed) {
         return buttonFlashed;
     }
     
-    return parseInt(cookie, 10);
+    return parseInt(cookie, PARSE_DECIMAL);
+}
+
+/* A convenience method for getting a high score. The rank should be in the range [1, MAX_NUM_HIGHSCORES].
+   Returns the score as a number if it exists or "" if not. */
+function getHighScore(rank) {
+    "use strict";
+    
+    var cookie = getCookie("simon_highscore" + rank);
+    
+    if (cookie !== "") {
+        return parseFloat(cookie);
+    }
+    
+    return "";
+}
+
+/* A convenience method for getting the name associated with a high score. The rank should be in the range [1, MAX_NUM_HIGHSCORES].
+   Returns the name if it exists or "" if not. */
+function getHighScoreName(rank) {
+    "use strict";
+    
+    return getCookie("simon_highscorename" + rank);
+}
+
+/* A convenience method for setting a high score. The rank is automatically calculated. Name should be the user's name,
+   and score should be the score that the user attained. */
+function setHighScore(name, score) {
+    "use strict";
+    
+    var date, rank, cookie;
+    
+    date = new Date();
+    date.setFullYear(date.getFullYear() + IMMORTAL_COOKIE_YEARS); // The high score should never expire.
+    
+    // Shift all the lower scores down before inserting this one.
+    for (rank = MAX_NUM_HIGHSCORES + 1; rank > 0; rank -= 1) {
+        cookie = getHighScore(rank - 1);
+        
+        if (cookie === "") {
+            continue;
+        }
+        
+        if (parseFloat(cookie) > score) {
+            break;
+        }
+        
+        if (rank <= MAX_NUM_HIGHSCORES) {
+            setCookie("simon_highscorename" + rank, getHighScoreName(rank - 1), date, "/");
+            setCookie("simon_highscore" + rank, cookie, date, "/");
+        }
+    }
+    
+    if (rank <= MAX_NUM_HIGHSCORES) {
+        setCookie("simon_highscorename" + rank, name, date, "/");
+        setCookie("simon_highscore" + rank, score, date, "/");
+    }
 }
