@@ -8,10 +8,10 @@
  # On the game screen, the user can see the current number of lives left. (Stephen)
  # The instructions screen explains how lives function. (Stephen)
  # The instructions screen has a Back button that takes the user to the main menu when clicked. (Stephen)
- # If the user runs out of lives with a score in the top 10 recorded in cookies on the client computer, the program asks for a name and inserts that name and the new score in the High Score table. *(Or should they be stored on the server to create competition? It may be too easy to hack.)* (Jeremy)
+ # If the user runs out of lives with a score in the top 10 recorded in cookies on the client computer, the program asks for a name and inserts that name and the new score in the High Score table. (Jeremy)
  # Regardless of whether the user just received a high score, a table of the top 10 scores and their associated names is then shown. (Jeremy)
  # On the Rules page, by clicking the buttons on the right side of the screen, the user can select only one color for each button on the left of the screen, and no two buttons on the left can share a selected color. (Ben)
- # The current rule set is shown on the Rules page by default. (Ben)
+ # The current rule set is shown on the Rules page when the user enters that page. (Ben)
  # The Rules page includes instructions for its use. (Ben)
  # The buttons on the game page flash in a random order every time. (Jeremy)
 
