@@ -67,7 +67,7 @@ function mouseOut(evt, darkenEdge) {
     
     var button, highlight, edge;
     
-    darkenEdge = typeof darkenEdge !== "undefined" ? darkenEdge : true;
+    darkenEdge = darkenEdge !== undefined ? darkenEdge : true;
     
     // Try to find the button. If unsuccessful, return without doing anything.
     button = getTarget(evt);
@@ -93,7 +93,7 @@ function mouseDown(evt, darkenEdge) {
     
     var button, highlight, edge;
     
-    darkenEdge = typeof darkenEdge !== "undefined" ? darkenEdge : true;
+    darkenEdge = darkenEdge !== undefined ? darkenEdge : true;
     
     // Try to find the button. If unsuccessful, return without doing anything.
     button = getTarget(evt);
@@ -119,7 +119,7 @@ function mouseUp(evt, brightenEdge) {
     
     var button, highlight, edge, MILLISECONDS_TO_REDRAW;
     
-    brightenEdge = typeof brightenEdge !== "undefined" ? brightenEdge : true;
+    brightenEdge = brightenEdge !== undefined ? brightenEdge : true;
     
     MILLISECONDS_TO_REDRAW = 100;
     
