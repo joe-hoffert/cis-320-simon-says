@@ -21,38 +21,59 @@ limitations under the License.
   <meta charset="UTF-8">
   <title>Simon Says</title>
   <link rel="stylesheet" href="simon.css">
+  
+  <style type="text/css">
+    body {
+        margin:     0px;
+        text-align: center;
+    }
+  </style>
  </head>
  
- <body>
+ <body id="body">
   <!-- Import all of the game's other Javascript files. -->
   <script type="text/javascript" src="button_events.js"></script>
   
-  <!-- Game Title -->
-   <h1><font color="00e000" face="Comic Sans MS" size="7">Fo<font color="f4f100">ll<font color="f40000">ow<font color="0000f4"> Me</font></h1>
-  
   <!-- The main menu -->
-  <div id="menuDiv">
-   <object data="images/start_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:10%;margin-left:37.5%"></object>
-   <object data="images/highscore_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:30%;margin-left:37.5%"></object>
-   <object data="images/settings_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:50%;margin-left:37.5%"></object>
-   <object data="images/rules_button.svg" type="image/svg+xml" height="25%" width="25%" style="position:relative;top:70%;margin-left:37.5%"></object>
-  </div>
+  <table id="menuTable" width="100%" height="100%" style="margin:0px auto">
+   <tr>
+    <th><l style="color:green"> Fo<l style="color:yellow">ll<l style="color:red">ow <l style="color:blue">Me </l></th>
+   </tr>
+   </tr>
+   <tr height="100%">
+    <td>
+     <object data="images/start_button.svg" type="image/svg+xml" height="21.25%"></object><br>
+     <object data="images/highscore_button.svg" type="image/svg+xml" height="21.25%"></object><br>
+     <object data="images/settings_button.svg" type="image/svg+xml" height="21.25%"></object><br>
+     <object data="images/rules_button.svg" type="image/svg+xml" height="21.25%"></object>
+    </td>
+   </tr>
+  </table>
   
   <script type="text/javascript">
-    var aspectRatio = 4 / 3;
-    var menu = document.getElementById("menuDiv");
+    var aspectRatio   = 4 / 3;
+    var menu          = document.getElementById("menuTable");
+    var textSizeRatio = 0.15; // Ratio of text height to window height
     
     // Scale the menu to the window, keeping a constant aspect ratio.
     function resizeMenu() {
         "use strict";
         
+        var width, height;
+        
         if (window.innerWidth >= window.innerHeight * aspectRatio) {
-            menu.setAttribute("width", window.innerHeight * aspectRatio);
-            menu.setAttribute("height", window.innerHeight);
+            width  = window.innerHeight * aspectRatio + "px";
+            height = window.innerHeight;
         } else {
-            menu.setAttribute("width", window.innerWidth);
-            menu.setAttribute("height", window.innerWidth / aspectRatio);
+            width  = window.innerWidth;
+            height = window.innerWidth / aspectRatio;
         }
+        
+        menu.setAttribute("width", width + "px");
+        menu.setAttribute("height", height + "px");
+        
+        // The text needs to be scaled separately.
+        document.getElementById("body").setAttribute("style", "font-size:" + height * textSizeRatio + "px");
     }
     
     /* Called when the Start Game button is pressed. */
@@ -64,6 +85,7 @@ limitations under the License.
     }
     
     window.onresize = resizeMenu;
+    window.onresize();
   </script>
  </body>
 </html>
