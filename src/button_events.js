@@ -179,4 +179,5 @@ function submit() {
     var nameBox = document.getElementById("nameBox");
     
     setHighScore(nameBox.getAttribute("value"), getCurrentScore());
+    highScore();
 }
