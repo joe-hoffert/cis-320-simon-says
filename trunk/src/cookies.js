@@ -24,6 +24,16 @@ var IMMORTAL_COOKIE_YEARS, MAX_NUM_HIGHSCORES;
 IMMORTAL_COOKIE_YEARS = 1000;
 MAX_NUM_HIGHSCORES    = 10;
 
+/* A helper function for changing a string so it will be written correctly in HTML.
+   Code taken from http://stackoverflow.com/questions/5251520/how-do-i-escape-some-html-in-javascript */
+function escapeHTML(string)
+{
+    var pre = document.createElement("pre");
+    var text = document.createTextNode(string);
+    pre.appendChild(text);
+    return pre.innerHTML;
+}
+
 /* Sets the value of the specified cookie. If the expiry is undefined, the cookie will expire when the browser is closed.
    The path points to the file or directory in which the cookie can be accessed ("/" for the whole site). An undefined path
    means only the currently running file can access the cookie. */
@@ -93,6 +103,27 @@ function getRule(buttonFlashed) {
     return parseInt(cookie, PARSE_DECIMAL);
 }
 
+/* A convenience method for getting the current score so that it will not be lost between pages. */
+function getCurrentScore() {
+    "use strict";
+    
+    var cookie = getCookie("simon_currentscore");
+    
+    if (cookie !== "") {
+        return parseFloat(cookie);
+    }
+    
+    return "";
+}
+
+/* A convenience method for setting the current score so that it will not be lost between pages.
+   score must be a number. */
+function setCurrentScore(score) {
+    "use strict";
+    
+    setCookie("simon_currentscore", score, undefined, "/");
+}
+
 /* A convenience method for getting a high score. The rank should be in the range [1, MAX_NUM_HIGHSCORES].
    Returns the score as a number if it exists or "" if not. */
 function getHighScore(rank) {
@@ -144,7 +175,7 @@ function setHighScore(name, score) {
     }
     
     if (rank <= MAX_NUM_HIGHSCORES) {
-        setCookie("simon_highscorename" + rank, name, date, "/");
-        setCookie("simon_highscore" + rank, score, date, "/");
+        setCookie("simon_highscorename" + rank, escapeHTML(name), date, "/");
+        setCookie("simon_highscore" + rank, escapeHTML(score), date, "/");
     }
 }
