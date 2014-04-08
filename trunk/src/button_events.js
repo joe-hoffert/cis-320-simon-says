@@ -172,3 +172,11 @@ function highScore() {
     // Go to the high score page.
     window.location.href = "../highScore.html";
 }
+
+/* Submits the current score, with the name in $("nameBox"), to the high score table and redirects the user to
+   the High Score screen. */
+function submit() {
+    var nameBox = document.getElementById("nameBox");
+    
+    setHighScore(nameBox.getAttribute("value"), getCurrentScore());
+}
