@@ -56,7 +56,7 @@ limitations under the License.
     prevPage = "../simon.html";
     
     table = document.getElementById("highscore_table_body");
-    for (i = 1; i <= 10; i += 1) {
+    for (i = 1; i <= MAX_NUM_HIGHSCORES; i += 1) {
         html = "<tr><td>" + i + "</td><td>";
         
         cookie = getHighScoreName(i);
