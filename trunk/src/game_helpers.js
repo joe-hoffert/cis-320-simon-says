@@ -35,9 +35,9 @@ function gameOver() {
     
     if (isHighScore(currentScore)) {
         setCurrentScore(currentScore);
-        window.href = "new_high_score.html";
+        window.location.href = "../new_high_score.html";
     } else {
-        window.href = "highScore.html";
+        window.location.href = "../highScore.html";
     }
 }
 
