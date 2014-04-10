@@ -19,61 +19,65 @@ limitations under the License.
 <html>
  <head>
   <meta charset="UTF-8">
-  <title>Rules</title>
+  <title>Follow Me - Rules</title>
   <link rel="stylesheet" href="simon.css">
-
-  </style>
  </head>
  
  <body>
-  <!-- Import all of the rules pages' other Javascript files. -->
+  <!-- Import all of the rules page's other Javascript files. -->
   <script type="text/javascript" src="rules_events.js"></script>
   <script type="text/javascript" src="cookies.js"></script>
   
   <!-- Rules Screen -->
   <!-- rule column --> 
-  <img style="position:fixed;top:20%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/blue_game_button.svg"></img>
-  <img style="position:fixed;top:40%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/red_game_button.svg"></img>
-  <img style="position:fixed;top:60%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/green_game_button.svg"></img>
-  <img style="position:fixed;top:80%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/yellow_game_button.svg"></img>
+  <img style="position:fixed;top:20%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/blue_game_button.svg">
+  <img style="position:fixed;top:40%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/red_game_button.svg">
+  <img style="position:fixed;top:60%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/green_game_button.svg">
+  <img style="position:fixed;top:80%;margin-left:10%" type="image/svg" height="20%" width="10%" src="images/yellow_game_button.svg">
   <!-- blue column -->
-  <object id="button00" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:20%;margin-left:30%"></object>
-  <object id="button01" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:40%;margin-left:30%"></object>
-  <object id="button02" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:60%;margin-left:30%"></object>
-  <object id="button03" data="images/blue_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:80%;margin-left:30%"></object>
+   <object id="button00" data="images/blue_game_button.svg" type="image/svg+xml" style="position:fixed;top:20%;margin-left:30%;height:20%;width:10%"></object>
+  <object id="button01" data="images/blue_game_button.svg" type="image/svg+xml" style="position:fixed;top:40%;margin-left:30%;height:20%;width:10%"></object>
+  <object id="button02" data="images/blue_game_button.svg" type="image/svg+xml" style="position:fixed;top:60%;margin-left:30%;height:20%;width:10%"></object>
+  <object id="button03" data="images/blue_game_button.svg" type="image/svg+xml" style="position:fixed;top:80%;margin-left:30%;height:20%;width:10%"></object>
   <!-- red column -->
-  <object id="button10" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:20%;margin-left:45%"></object>
-  <object id="button11" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:40%;margin-left:45%"></object>
-  <object id="button12" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:60%;margin-left:45%"></object>
-  <object id="button13" data="images/red_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:80%;margin-left:45%"></object>
+  <object id="button10" data="images/red_game_button.svg" type="image/svg+xml" style="position:fixed;top:20%;margin-left:45%;height:20%;width:10%"></object>
+  <object id="button11" data="images/red_game_button.svg" type="image/svg+xml" style="position:fixed;top:40%;margin-left:45%;height:20%;width:10%"></object>
+  <object id="button12" data="images/red_game_button.svg" type="image/svg+xml" style="position:fixed;top:60%;margin-left:45%;height:20%;width:10%"></object>
+  <object id="button13" data="images/red_game_button.svg" type="image/svg+xml" style="position:fixed;top:80%;margin-left:45%;height:20%;width:10%"></object>
   <!-- green column -->
-  <object id="button20" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:20%;margin-left:60%"></object>
-  <object id="button21" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:40%;margin-left:60%"></object>
-  <object id="button22" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:60%;margin-left:60%"></object>
-  <object id="button23" data="images/green_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:80%;margin-left:60%"></object>
+  <object id="button20" data="images/green_game_button.svg" type="image/svg+xml" style="position:fixed;top:20%;margin-left:60%;height:20%;width:10%"></object>
+  <object id="button21" data="images/green_game_button.svg" type="image/svg+xml" style="position:fixed;top:40%;margin-left:60%;height:20%;width:10%"></object>
+  <object id="button22" data="images/green_game_button.svg" type="image/svg+xml" style="position:fixed;top:60%;margin-left:60%;height:20%;width:10%"></object>
+  <object id="button23" data="images/green_game_button.svg" type="image/svg+xml" style="position:fixed;top:80%;margin-left:60%;height:20%;width:10%"></object>
   <!-- yellow column -->
-  <object id="button30" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:20%;margin-left:75%"></object>
-  <object id="button31" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:40%;margin-left:75%"></object>
-  <object id="button32" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:60%;margin-left:75%"></object>
-  <object id="button33" data="images/yellow_game_button.svg" type="image/svg+xml" height="20%" width="10%" style="position:fixed;top:80%;margin-left:75%"></object>
+  <object id="button30" data="images/yellow_game_button.svg" type="image/svg+xml" style="position:fixed;top:20%;margin-left:75%;height:20%;width:10%"></object>
+  <object id="button31" data="images/yellow_game_button.svg" type="image/svg+xml" style="position:fixed;top:40%;margin-left:75%;height:20%;width:10%"></object>
+  <object id="button32" data="images/yellow_game_button.svg" type="image/svg+xml" style="position:fixed;top:60%;margin-left:75%;height:20%;width:10%"></object>
+  <object id="button33" data="images/yellow_game_button.svg" type="image/svg+xml" style="position:fixed;top:80%;margin-left:75%;height:20%;width:10%"></object>
   
   <!-- Other assets -->
-  <object data="images/back_button.svg" type="image/svg+xml" height="10%" width="10%" style="position:fixed;top:0%;margin-left:10%"></object>
-  <img style="position:fixed;top:55%;margin-left:20%" type="image/svg" height="10%" width="10%" src="images/arrow.svg"></img>
+  <object data="images/back_button.svg" type="image/svg+xml" style="position:fixed;top:0%;margin-left:10%;height:10%;width:10%"></object>
+  <img style="position:fixed;top:55%;margin-left:20%;height:10%;width:10%" type="image/svg" src="images/arrow.svg">
 
   <script type="text/javascript">
     // The Back button should send the user back to the main menu.
     var prevPage = "../simon.html";
+    var NUM_RULES = 0;
+    while (document.getElementById("button0" + NUM_RULES)) {
+        NUM_RULES += 1;
+    }
+    
+    window.onload = recallRules;
   </script>
   
-  <table width="100%" height="25%">
-   <tr>
+  <table height="25%" width="100%">
+   <tbody><tr>
     <td>
      <p style="text-align:center;">Each color in the left column corresponds to a row to its right. Press one color square per row to select it as a rule.
 	 For example, pressing the red square in the top row means that during the game, you must press the red square every time a
 	 blue square flashes. </p>
     </td>
    </tr>
-  </table>
+  </tbody></table> 
  </body>
 </html>
