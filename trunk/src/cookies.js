@@ -157,14 +157,14 @@ function setHighScore(name, score) {
     date.setFullYear(date.getFullYear() + IMMORTAL_COOKIE_YEARS); // The high score should never expire.
     
     // Shift all the lower scores down before inserting this one.
-    for (rank = MAX_NUM_HIGHSCORES + 1; rank > 0; rank -= 1) {
+    for (rank = MAX_NUM_HIGHSCORES + 1; rank > 1; rank -= 1) {
         cookie = getHighScore(rank - 1);
         
         if (cookie === "") {
             continue;
         }
         
-        if (parseFloat(cookie) > score) {
+        if (parseFloat(cookie) >= score) {
             break;
         }
         
