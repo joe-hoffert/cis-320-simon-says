@@ -19,10 +19,16 @@ limitations under the License.
 <html>
  <head>
   <meta charset="UTF-8">
-  <title>High Score</title>
+  <title>Follow Me - High Scores</title>
   <link rel="stylesheet" href="simon.css">
   
   <style type="text/css">
+    /* The table undoes the body's margin attribute and replaces it with padding to make the table's width correct. */
+    table {
+        margin:  -8px;
+        padding: 8px;
+    }
+    
     td, th {
         text-align: right;
     }
@@ -34,12 +40,14 @@ limitations under the License.
   <script type="text/javascript" src="button_events.js"></script>
   
   <!-- High Score Screen -->
-  <object data="images/back_button.svg" type="image/svg+xml" height="10%" width="10%"></object><br>
+  <object data="images/back_button.svg" type="image/svg+xml" style="height:10%; width:10%"></object><br>
   
-  <table width="100%">
+  <h1>High Scores</h1>
+  
+  <table style="width:100%">
    <thead>
     <tr>
-     <th width="4em">Rank</th>
+     <th style="width:4em">Rank</th>
      <th>Name</th>
      <th>Score</th>
     </tr>
