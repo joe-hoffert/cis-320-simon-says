@@ -21,20 +21,6 @@
  limitations under the License.
  *******************************************/
  
-/* A helper function to return the button that created the given event. Returns false on failure. */
-function getTarget(evt) {
-    "use strict";
-    
-    if (evt.target) {
-        return evt.target;
-    }
-    if (evt.srcElement) {
-        return evt.srcElement;
-    }
-    
-    return false;
-}
-
 /* Forces the given element to be redrawn. Needed for Webkit-based browsers. */
 function forceRedraw(el) {
     "use strict";
@@ -73,11 +59,6 @@ function mouseDown(evt, darkenEdge) {
     "use strict";
 	
     var target, button, highlight, edge;
-	// Logic variables
-	var checkOneOne, checkOneTwo, checkOneThree, checkOneFour;
-	var checkTwoOne, checkTwoTwo, checkTwoThree, checkTwoFour;
-	var checkThreeOne, checkThreeTwo, checkThreeThree , checkThreeFour;
-	var checkFourOne, checkFourTwo, checkFourThree, checkFourFour;
     
     darkenEdge = typeof darkenEdge !== "undefined" ? darkenEdge : true;
     
@@ -108,11 +89,29 @@ function mouseDown(evt, darkenEdge) {
     forceRedraw(button);
 }
 
+/* ----------------------------------------------------------------------------------------------------------------------*/
+/* The following section containes helper functions                                                                      */
+/* ----------------------------------------------------------------------------------------------------------------------*/
+
+/* Returns the button that created the given event. Returns false on failure. */
+function getTarget(evt) {
+    "use strict";
+    
+    if (evt.target) {
+        return evt.target;
+    }
+    if (evt.srcElement) {
+        return evt.srcElement;
+    }
+    
+    return false;
+}
+
 function darken(id) {
 	"use strict";
 	
 	var highlight;
-	highlight = target.ownerDocument.getElementById("highlight");
+	highlight = document.getElementById(id).getSVGDocument().getElementById("highlight");
     highlight.setAttribute("style", highlight.getAttribute("dark_text"));
 }
 
@@ -122,6 +121,17 @@ function lighten(id) {
 	var highlight;
 	highlight = document.getElementById(id).getSVGDocument().getElementById("highlight"); 
 	highlight.setAttribute("style", highlight.getAttribute("bright_text"));
+}
+
+function recallRules() {
+    "use strict";
+    
+    var i, rule;
+    
+    for (i = 0; i < NUM_RULES; i += 1) {
+        rule = getRule(i);
+        darken(("button" + rule) + i);
+    }
 }
 
 function isPressed(id) {
@@ -135,8 +145,7 @@ function isPressed(id) {
 function massLighten(button) {
 	"use strict";
 	
-	var i, j, NUM_BUTTONS, buttonXCoordinateStart, buttonYCoordinateStart, x, y, x2;
-	NUM_BUTTONS = 4;
+	var i, j, buttonXCoordinateStart, buttonYCoordinateStart, x, y, x2, y2;
 
 	// ButtonXY where x is column and y is row
 	// buttonXCoordinateStart and the 'y' version parse through "buttonXY" to get the numbers from the id
@@ -146,33 +155,38 @@ function massLighten(button) {
 	y = parseInt(button.id.charAt(buttonYCoordinateStart));
 	
 	// Lightens everything in the same row as the button pressed
-	for (i = 0; i < NUM_BUTTONS; i += 1) {
+	for (i = 0; i < NUM_RULES; i += 1) {
 	    if (i != x && isPressed(("button" + i) + y)) {
 		    lighten(("button" + i) + y);
-			x2 = i;
+		    x2 = i;
 			break;
 		}
 	}
 	
 	// Lightens everything in the same column as the button pressed
-	for (j = 0; j < NUM_BUTTONS; j += 1) {
+	for (j = 0; j < NUM_RULES; j += 1) {
 		if (j != y && isPressed(("button" + x) + j)) {
 			lighten(("button" + x) + j);
-			
+			y2 = j;
 			break;
 		}
 	}
+	
+	// Establish a rule for use in the game
+	// First value is the color of the button that will be flashed in game, second is the one to be pressed
+	setRule(y, x);
+	setRule(y2, x2)	
+	darken(("button" + x2) + y2);
 }
 
 function getButton(target) {
      "use strict";
 	 
 	 var i, j;
-     var NUM_BUTTONS = 4;
      var button;
 
-     for (i = 0; i < NUM_BUTTONS; i += 1) {
-         for (j = 0; j < NUM_BUTTONS; j += 1) {
+     for (i = 0; i < NUM_RULES; i += 1) {
+         for (j = 0; j < NUM_RULES; j += 1) {
              button = document.getElementById(("button" + i) + j);
 
              if (button.getSVGDocument() === target.ownerDocument) {
@@ -183,6 +197,10 @@ function getButton(target) {
 
      return null;
 }
+
+/* ----------------------------------------------------------------------------------------------------------------------*/
+/* End of helper function section																						 */
+/* ----------------------------------------------------------------------------------------------------------------------*/
 
 function goBack() {
     "use strict";
