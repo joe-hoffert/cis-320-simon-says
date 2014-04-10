@@ -178,6 +178,6 @@ function highScore() {
 function submit() {
     var nameBox = document.getElementById("nameBox");
     
-    setHighScore(nameBox.getAttribute("value"), getCurrentScore());
+    setHighScore(nameBox.value, getCurrentScore());
     highScore();
 }
