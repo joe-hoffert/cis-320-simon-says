@@ -34,6 +34,7 @@ function gameOver() {
     "use strict";
     
     if (isHighScore(currentScore)) {
+        setCurrentScore(currentScore);
         window.href = "new_high_score.html";
     } else {
         window.href = "highScore.html";
