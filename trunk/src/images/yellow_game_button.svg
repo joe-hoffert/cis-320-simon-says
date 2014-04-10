@@ -27,12 +27,12 @@
          offset="0"
          id="highlight"
          bright_text="stop-color:#fffec1;stop-opacity:1;"
-         dark_text="stop-color:#d0cc00;stop-opacity:1;" />
+         dark_text="stop-color:#686600;stop-opacity:1;" />
       <stop
          style="stop-color:#f4f100;stop-opacity:1;"
          offset="1"
          id="edge"
-         bright_text="stop-color:#fffd59;stop-opacity:1;"
+         bright_text="stop-color:#fffec1;stop-opacity:1;"
          dark_text="stop-color:#f4f100;stop-opacity:1;" />
     </linearGradient>
     <linearGradient
